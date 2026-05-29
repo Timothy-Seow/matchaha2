@@ -43,7 +43,7 @@ async function loadSubscriptions() {
     .select('id, tier, status, next_ship_date');
   const root = $('#subscriptions-list');
   if (error || !data?.length) {
-    root.innerHTML = `<p class="muted">No active subscription. <a href="subscriptions.html">Start one →</a></p>`;
+    root.innerHTML = `<p class="muted">No active subscription. <a href="shop.html">Start one →</a></p>`;
     return;
   }
   root.innerHTML = data.map(s => `

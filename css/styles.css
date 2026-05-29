@@ -545,47 +545,6 @@ body {
   margin-bottom: 40px;
 }
 
-/* ---------- Subscription detail (subs page) ---------- */
-.sub-detail-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-}
-.sub-detail-card {
-  background: var(--cream);
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 48px 40px;
-}
-.sub-detail-card h3 {
-  font-family: var(--font-serif);
-  font-weight: 400;
-  font-size: 32px;
-  margin: 0 0 12px;
-  color: var(--green-900);
-}
-.sub-detail-card .sub-price {
-  color: var(--ink) !important;
-  font-size: 16px !important;
-  margin: 8px 0 24px !important;
-}
-.sub-detail-card ul {
-  margin: 24px 0 32px;
-}
-.sub-detail-card ul li {
-  padding: 10px 0 10px 24px;
-  border-bottom: 1px solid var(--line);
-  font-size: 15px;
-  position: relative;
-  color: var(--ink);
-}
-.sub-detail-card ul li::before {
-  content: '✿';
-  position: absolute;
-  left: 0;
-  color: var(--green-500);
-}
-
 /* How-it-works */
 .steps {
   display: grid;
@@ -878,7 +837,7 @@ body {
   .primary-nav { display: none; }
   .secondary-nav ul { gap: 20px; flex-wrap: wrap; justify-content: flex-start; }
   .product-grid { grid-template-columns: repeat(2, 1fr); }
-  .split, .sub-grid, .sub-detail-grid { grid-template-columns: 1fr; }
+  .split, .sub-grid { grid-template-columns: 1fr; }
   .split.reverse .split-image { order: 0; }
   .store-grid { grid-template-columns: repeat(2, 1fr); }
   .footer-grid { grid-template-columns: repeat(2, 1fr); }
