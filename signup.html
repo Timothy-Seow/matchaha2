@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Create account — matcha-haha</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo">matcha-haha</a>
+    <nav class="primary-nav" aria-label="Primary">
+      <ul>
+        <li><a href="shop.html">Matcha</a></li>
+        <li><a href="shop.html#ready">Ready to Drink</a></li>
+        <li><a href="subscriptions.html">Subscription</a></li>
+        <li><a href="shop.html#merch">Merchandise</a></li>
+        <li><a href="shop.html">Shop all</a></li>
+      </ul>
+    </nav>
+    <div class="header-utils">
+      <a id="auth-link" href="signin.html" class="util-link">Sign In</a>
+      <span class="util-divider">EN</span>
+      <a href="#" class="util-link cart">Cart (0)</a>
+    </div>
+  </div>
+</header>
+
+<main class="auth-page">
+  <div class="auth-card">
+    <p class="eyebrow">New visitor</p>
+    <h1>Create your account</h1>
+
+    <div class="oauth-row">
+      <button class="oauth-btn" data-provider="google">
+        <span class="oauth-icon">G</span> Continue with Google
+      </button>
+      <button class="oauth-btn" data-provider="apple">
+        <span class="oauth-icon"></span> Continue with Apple
+      </button>
+    </div>
+
+    <div class="auth-divider"><span>or</span></div>
+
+    <form id="signup-form" class="auth-form">
+      <label>
+        <span>Full name</span>
+        <input type="text" name="fullName" required autocomplete="name" />
+      </label>
+      <label>
+        <span>Email</span>
+        <input type="email" name="email" required autocomplete="email" />
+      </label>
+      <label>
+        <span>Password</span>
+        <input type="password" name="password" required autocomplete="new-password" minlength="8" />
+        <small class="muted" style="font-size:12px;">8+ characters.</small>
+      </label>
+      <p id="signup-error" class="auth-error" hidden></p>
+      <p id="signup-ok" class="auth-ok" hidden></p>
+      <button type="submit" class="btn btn-primary">Create account</button>
+    </form>
+
+    <p class="auth-foot">
+      Already have an account? <a href="signin.html">Sign in →</a>
+    </p>
+  </div>
+</main>
+
+<script type="module">
+  import { signUpWithEmail, signInWithOAuth } from './js/auth.js';
+
+  document.querySelectorAll('.oauth-btn').forEach(b => {
+    b.addEventListener('click', () => signInWithOAuth(b.dataset.provider));
+  });
+
+  document.getElementById('signup-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const fd = new FormData(e.currentTarget);
+    const err = document.getElementById('signup-error');
+    const ok  = document.getElementById('signup-ok');
+    err.hidden = true; ok.hidden = true;
+
+    const { data, error } = await signUpWithEmail({
+      email: fd.get('email'),
+      password: fd.get('password'),
+      fullName: fd.get('fullName'),
+    });
+
+    if (error) { err.textContent = error.message; err.hidden = false; return; }
+
+    if (data?.session) {
+      location.href = 'account.html';
+    } else {
+      ok.textContent = 'Almost there — check your inbox to confirm your email.';
+      ok.hidden = false;
+    }
+  });
+</script>
+<script type="module" src="js/header.js"></script>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Account — matcha-haha</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo">matcha-haha</a>
+    <nav class="primary-nav" aria-label="Primary">
+      <ul>
+        <li><a href="shop.html">Matcha</a></li>
+        <li><a href="shop.html#ready">Ready to Drink</a></li>
+        <li><a href="subscriptions.html">Subscription</a></li>
+        <li><a href="shop.html#merch">Merchandise</a></li>
+        <li><a href="shop.html">Shop all</a></li>
+      </ul>
+    </nav>
+    <div class="header-utils">
+      <a id="auth-link" href="signin.html" class="util-link">Sign In</a>
+      <span class="util-divider">EN</span>
+      <a href="#" class="util-link cart">Cart (0)</a>
+    </div>
+  </div>
+</header>
+
+<section class="page-header">
+  <div class="container">
+    <p class="eyebrow">Account</p>
+    <h1>Hello, <span id="profile-name">there</span>.</h1>
+    <p>Manage your subscription, browse past orders, and check on your loyalty points.</p>
+  </div>
+</section>
+
+<div class="container">
+  <nav class="account-tabs">
+    <a href="#profile" class="active">Profile</a>
+    <a href="#subscriptions">Subscription</a>
+    <a href="#orders">Orders</a>
+    <a href="#favourites">Favourites</a>
+    <a href="#loyalty">Loyalty</a>
+    <a href="#" id="signout-btn" class="signout">Sign out</a>
+  </nav>
+</div>
+
+<section class="section">
+  <div class="container">
+
+    <div id="profile" class="account-panel active">
+      <h2 class="section-title">Profile</h2>
+      <div class="profile-grid">
+        <div><p class="eyebrow">Name</p><p id="profile-name-2"><span id="profile-name-inner">—</span></p></div>
+        <div><p class="eyebrow">Email</p><p id="profile-email">—</p></div>
+        <div><p class="eyebrow">Phone</p><p id="profile-phone">—</p></div>
+        <div><p class="eyebrow">Loyalty points</p><p><span id="loyalty-points">0</span> points</p></div>
+      </div>
+    </div>
+
+    <div id="subscriptions" class="account-panel">
+      <h2 class="section-title">Subscription</h2>
+      <div id="subscriptions-list"><p class="muted">Loading…</p></div>
+    </div>
+
+    <div id="orders" class="account-panel">
+      <h2 class="section-title">Orders</h2>
+      <div id="orders-list"><p class="muted">Loading…</p></div>
+    </div>
+
+    <div id="favourites" class="account-panel">
+      <h2 class="section-title">Favourites</h2>
+      <div id="favourites-list"><p class="muted">Loading…</p></div>
+    </div>
+
+    <div id="loyalty" class="account-panel">
+      <h2 class="section-title">Loyalty</h2>
+      <p>You have <strong><span id="loyalty-points-2">0</span></strong> matcha-haha points.</p>
+      <p class="muted">Earn 1 point per S$1 spent. Redeem 500 points for a free tin of Niko.</p>
+    </div>
+
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <h5>Shop</h5>
+      <ul>
+        <li><a href="shop.html">Matcha</a></li>
+        <li><a href="shop.html#ready">Ready to Drink</a></li>
+        <li><a href="subscriptions.html">Subscription</a></li>
+        <li><a href="shop.html#merch">Merchandise</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>About</h5>
+      <ul>
+        <li><a href="about.html">Our Story</a></li>
+        <li><a href="about.html#cafes">Our Cafés</a></li>
+        <li><a href="#">Careers</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Support</h5>
+      <ul>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Shipping</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Stay close</h5>
+      <p class="muted">matcha-haha pte. ltd.<br/>78 Yong Siak Street, Singapore</p>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <p>© 2026 matcha-haha. Whisked in Singapore.</p>
+    <p><a href="#">Terms</a> · <a href="#">Privacy</a></p>
+  </div>
+</footer>
+
+<script type="module" src="js/account.js"></script>
+<script type="module" src="js/header.js"></script>
+<script>
+  // Keep loyalty points in sync between the Profile and Loyalty tabs.
+  new MutationObserver(() => {
+    document.getElementById('loyalty-points-2').textContent =
+      document.getElementById('loyalty-points').textContent;
+  }).observe(document.getElementById('loyalty-points'), { childList: true });
+</script>
+</body>
+</html>
